@@ -3,11 +3,17 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const EmployeeModel = require('./models/Employee')
 const app = express()
+
+
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: ["https://deploy-mern-1whq.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true
+}))
 
 //create connection with mongodb
-mongoose.connect("mongodb://127.0.0.1:27017/employee");
+mongoose.connect("mongodb+srv://soumyaray:6rD2y7o6ykhpr9ri@cluster0.mofpris.mongodb.net/employee?retryWrites=true&w=majority");
 
 app.post('/login', (req,res) => {
     const {email, password} = req.body;
